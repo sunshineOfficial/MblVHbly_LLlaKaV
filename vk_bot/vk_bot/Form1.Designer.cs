@@ -45,13 +45,14 @@
             this.webBrowser1.Name = "webBrowser1";
             this.webBrowser1.Size = new System.Drawing.Size(822, 420);
             this.webBrowser1.TabIndex = 0;
-            this.webBrowser1.Url = new System.Uri("https://oauth.vk.com/authorize?client_id=1&display=page&redirect_uri=https://oaut" +
-                    "h.vk.com/blank.html&scope=friends,wall&response_type=token&v=5.87&state=123456", System.UriKind.Absolute);
+            this.webBrowser1.Url = new System.Uri("https://oauth.vk.com/authorize?client_id=6410346&display=page&redirect_uri=https:" +
+                    "//oauth.vk.com/blank.html&scope=friends,wall,groups&response_type=token&v=5.87&s" +
+                    "tate=123456", System.UriKind.Absolute);
             this.webBrowser1.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.webBrowser1_DocumentCompleted);
             // 
             // AvatarPictureBox
             // 
-            this.AvatarPictureBox.Location = new System.Drawing.Point(38, 128);
+            this.AvatarPictureBox.Location = new System.Drawing.Point(37, 73);
             this.AvatarPictureBox.Name = "AvatarPictureBox";
             this.AvatarPictureBox.Size = new System.Drawing.Size(150, 140);
             this.AvatarPictureBox.TabIndex = 1;
@@ -60,24 +61,26 @@
             // FirstNameLabel
             // 
             this.FirstNameLabel.AutoSize = true;
-            this.FirstNameLabel.Location = new System.Drawing.Point(71, 9);
+            this.FirstNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.FirstNameLabel.Location = new System.Drawing.Point(33, 9);
             this.FirstNameLabel.Name = "FirstNameLabel";
-            this.FirstNameLabel.Size = new System.Drawing.Size(35, 13);
+            this.FirstNameLabel.Size = new System.Drawing.Size(51, 20);
             this.FirstNameLabel.TabIndex = 2;
             this.FirstNameLabel.Text = "label1";
             // 
             // SecondNameLabel
             // 
             this.SecondNameLabel.AutoSize = true;
-            this.SecondNameLabel.Location = new System.Drawing.Point(71, 69);
+            this.SecondNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.SecondNameLabel.Location = new System.Drawing.Point(33, 32);
             this.SecondNameLabel.Name = "SecondNameLabel";
-            this.SecondNameLabel.Size = new System.Drawing.Size(35, 13);
+            this.SecondNameLabel.Size = new System.Drawing.Size(51, 20);
             this.SecondNameLabel.TabIndex = 3;
             this.SecondNameLabel.Text = "label2";
             // 
             // autoAnswerButton
             // 
-            this.autoAnswerButton.Location = new System.Drawing.Point(252, 17);
+            this.autoAnswerButton.Location = new System.Drawing.Point(252, 73);
             this.autoAnswerButton.Name = "autoAnswerButton";
             this.autoAnswerButton.Size = new System.Drawing.Size(187, 53);
             this.autoAnswerButton.TabIndex = 4;
@@ -87,7 +90,7 @@
             // 
             // AutoMessageButton
             // 
-            this.AutoMessageButton.Location = new System.Drawing.Point(252, 100);
+            this.AutoMessageButton.Location = new System.Drawing.Point(252, 159);
             this.AutoMessageButton.Name = "AutoMessageButton";
             this.AutoMessageButton.Size = new System.Drawing.Size(187, 54);
             this.AutoMessageButton.TabIndex = 5;
