@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Net;
+using System.Collections.ObjectModel;
 
 using Newtonsoft.Json;
 
@@ -66,14 +67,21 @@ namespace vk_bot
 
         private void button1_Click(object sender, EventArgs e)
         {
+            Collection<string> grIds = new Collection<string>();
             if (listView1.SelectedItems.Count > 0)
             {
                 label1.Text = listView1.SelectedItems[0].SubItems[1].Text;
+
+                foreach (ListViewItem str in listView1.SelectedItems)
+                {
+                    grIds.Add(str.SubItems[1].Text);
+                }
 
                 LastPostComment lpc = new LastPostComment();
                 lpc.access_token = access_token;
                 lpc.groupId = label1.Text;
                 lpc.userId = userId;
+                lpc.grIds = grIds;
                 lpc.ShowDialog();
             }
         }

@@ -63,9 +63,9 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.Location = new System.Drawing.Point(687, 12);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(169, 25);
+            this.label1.Size = new System.Drawing.Size(158, 75);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Выберите группу";
+            this.label1.Text = "Выберите одну \r\nили несколько \r\nгрупп";
             this.label1.Visible = false;
             // 
             // pictureBox1

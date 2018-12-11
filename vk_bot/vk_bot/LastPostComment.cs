@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Net;
+using System.Collections.ObjectModel;
 
 using Newtonsoft.Json;
 
@@ -19,6 +20,7 @@ namespace vk_bot
         public string postId;
         public string userId;
         public int postTime;
+        public Collection<string> grIds = new Collection<string>();
 
         public LastPostComment()
         {
@@ -53,40 +55,71 @@ namespace vk_bot
             timer1.Interval = 1000;
             
             DateTime now = DateTime.UtcNow;
-            DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, 0);
-
-            string request = "https://api.vk.com/method/wall.get?owner_id=-" + groupId + "&count=2&extended=1&access_token=" + access_token + "&v=5.87";
-            WebClient client = new WebClient();
-            string answer = Encoding.UTF8.GetString(client.DownloadData(request));
-
-            Post po = new Post();
-            po = JsonConvert.DeserializeObject<Post>(answer);
             
-            if (po.response.items[0].is_pinned == 0)
+
+            foreach (string groupId in grIds)
             {
-                postTime = po.response.items[0].date;
-                postId = po.response.items[0].id.ToString();
-            } 
-            else
-            {
-                postTime = po.response.items[1].date;
-                postId = po.response.items[1].id.ToString();
+                DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, 0);
+                string request = "https://api.vk.com/method/wall.get?owner_id=-" + groupId + "&count=2&extended=1&access_token=" + access_token + "&v=5.87";
+                WebClient client = new WebClient();
+                string answer = Encoding.UTF8.GetString(client.DownloadData(request));
+                System.Threading.Thread.Sleep(100);//Ждать 100 мс
+
+                Post po = new Post();
+                po = JsonConvert.DeserializeObject<Post>(answer);
+
+                if (answer.Contains("error"))
+                {
+                    continue;
+                }
+
+                if (po.response.items.Length != 0)
+                {
+                    if (po.response.items[0].is_pinned == 0)
+                    {
+                        postTime = po.response.items[0].date;
+                        postId = po.response.items[0].id.ToString();
+                    }
+                    else
+                    {
+                        postTime = po.response.items[1].date;
+                        postId = po.response.items[1].id.ToString();
+                    }
+                }
+
+                string request3 = "https://api.vk.com/method/wall.getComments?owner_id=-" + groupId + "&post_id=" + postId + "&count=50&sort=desc&access_token=" + access_token + "&v=5.87";
+                string answer3 = Encoding.UTF8.GetString(client.DownloadData(request3));
+
+                Comments co = new Comments();
+                co = JsonConvert.DeserializeObject<Comments>(answer3);
+
+                origin = origin.AddSeconds(postTime);
+                bool fi = false;
+
+                foreach (Comments.Response.Item cm in co.response.items)
+                {
+                    if (cm.from_id.ToString() == userId)
+                    {
+                        fi = true;
+                    }
+                }
+                
+                if (now < origin.AddMinutes(1) && fi == false)
+                {
+                    string request2 = "https://api.vk.com/method/wall.createComment?owner_id=-" + groupId + "&post_id=" + postId + "&message=" + listBox1.Text + "&access_token=" + access_token + "&v=5.87";
+                    string answer2 = Encoding.UTF8.GetString(client.DownloadData(request2));
+                }
             }
+        }
 
-            string request3 = "https://api.vk.com/method/wall.getComments?owner_id=-" + groupId + "&post_id=" + postId + "&count=1&sort=desc&access_token=" + access_token + "&v=5.87";
-            string answer3 = Encoding.UTF8.GetString(client.DownloadData(request3));
+        private void button2_Click(object sender, EventArgs e)
+        {
+            timer1.Enabled = false;
+        }
 
-            Comments co = new Comments();
-            co = JsonConvert.DeserializeObject<Comments>(answer3);
-
-            origin = origin.AddSeconds(postTime);
-
-            if (now < origin.AddMinutes(1))
-            {
-                string request2 = "https://api.vk.com/method/wall.createComment?owner_id=-" + groupId + "&post_id=" + postId + "&message=" + listBox1.Text + "&access_token=" + access_token + "&v=5.87";
-                string answer2 = Encoding.UTF8.GetString(client.DownloadData(request2));
-                timer1.Interval = 60000;
-            }
+        private void LastPostComment_Load(object sender, EventArgs e)
+        {
+            
         }
     }
 }
