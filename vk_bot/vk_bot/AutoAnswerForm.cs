@@ -37,18 +37,26 @@ namespace vk_bot
             Group gr;
             gr = JsonConvert.DeserializeObject<Group>(answer);
 
-            for (int itemIndex = 0; itemIndex < gr.response.items.Length; itemIndex = itemIndex + 1)
+            try
             {
-                string[] names = new string[3];
-                names[0] = gr.response.items[itemIndex].name;
-                names[1] = gr.response.items[itemIndex].id.ToString();
-                names[2] = gr.response.items[itemIndex].photo_50;
-                pictureBox1.Load(gr.response.items[itemIndex].photo_50);
-                Application.DoEvents();
-                imageList1.Images.Add(pictureBox1.Image);
-                ListViewItem lvi = new ListViewItem(names, imageList1.Images.Count - 1);
-                listView1.Items.Add(lvi);
-                
+                for (int itemIndex = 0; itemIndex < gr.response.items.Length; itemIndex = itemIndex + 1)
+                {
+                    string[] names = new string[3];
+                    names[0] = gr.response.items[itemIndex].name;
+                    names[1] = gr.response.items[itemIndex].id.ToString();
+                    names[2] = gr.response.items[itemIndex].photo_50;
+                    pictureBox1.Load(gr.response.items[itemIndex].photo_50);
+                    Application.DoEvents();
+                    imageList1.Images.Add(pictureBox1.Image);
+                    ListViewItem lvi = new ListViewItem(names, imageList1.Images.Count - 1);
+                    listView1.Items.Add(lvi);
+
+                }
+            }
+            catch (Exception)
+            {
+                ErrorLabel.Text = "Возникла непредвиденная ошибка";
+                ErrorLabel.Visible = true;
             }
         }
 

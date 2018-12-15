@@ -96,18 +96,45 @@ namespace vk_bot
                 origin = origin.AddSeconds(postTime);
                 bool fi = false;
 
-                foreach (Comments.Response.Item cm in co.response.items)
+                try
                 {
-                    if (cm.from_id.ToString() == userId)
+                    foreach (Comments.Response.Item cm in co.response.items)
                     {
-                        fi = true;
+                        if (cm.from_id.ToString() == userId)
+                        {
+                            fi = true;
+                        }
                     }
+                }
+                catch (Exception)
+                {
+                    ErrorLabel.Visible = true;
                 }
                 
                 if (now < origin.AddMinutes(1) && fi == false)
                 {
-                    string request2 = "https://api.vk.com/method/wall.createComment?owner_id=-" + groupId + "&post_id=" + postId + "&message=" + listBox1.Text + "&access_token=" + access_token + "&v=5.87";
-                    string answer2 = Encoding.UTF8.GetString(client.DownloadData(request2));
+                    try
+                    {
+                        string request2 = "https://api.vk.com/method/wall.createComment?owner_id=-" + groupId + "&post_id=" + postId + "&message=" + listBox1.Text + "&access_token=s" + access_token + "&v=5.87";
+                        string answer2 = Encoding.UTF8.GetString(client.DownloadData(request2));
+
+                        if (answer.Contains("error"))
+                        {
+                            throw new Exception();
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        CommentErrorForm cef = new CommentErrorForm();
+                        cef.ShowDialog();
+                        DialogResult res;
+                        res = cef.ShowDialog();
+
+                        if (res == DialogResult.OK)
+                        {
+                            cef.Close();
+                        }
+                    }
                 }
             }
         }
