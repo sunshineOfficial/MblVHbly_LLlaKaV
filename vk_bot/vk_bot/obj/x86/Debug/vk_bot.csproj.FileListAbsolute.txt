@@ -61,3 +61,5 @@ D:\Айтишка\3 модуль\vk_bot\vk_bot\obj\x86\Debug\vk_bot.CommentError
 D:\Айтишка\3 модуль\vk_bot\vk_bot\obj\x86\Debug\vk_bot.MainMenu.resources
 J:\Айтишка\3 модуль\vk_bot\vk_bot\obj\x86\Debug\vk_bot.CommentErrorForm.resources
 J:\Айтишка\3 модуль\vk_bot\vk_bot\obj\x86\Debug\vk_bot.MainMenu.resources
+D:\Айтишка\3 модуль\vk_bot\vk_bot\bin\Debug\vk_bot.exe.config
+J:\Айтишка\3 модуль\vk_bot\vk_bot\bin\Debug\vk_bot.exe.config
