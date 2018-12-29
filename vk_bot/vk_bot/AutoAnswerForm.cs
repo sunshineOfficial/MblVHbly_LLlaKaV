@@ -18,16 +18,11 @@ namespace vk_bot
         public string access_token;
         public string groupId;
         public string userId;
-        public MainMenu mainform;
+        public Form1 mainform;
 
         public AutoAnswerForm()
         {
             InitializeComponent();
-        }
-
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
         }
 
         private void FormPreceous_Load(object sender, EventArgs e)
@@ -36,13 +31,15 @@ namespace vk_bot
             WebClient client = new WebClient();
             string answer = Encoding.UTF8.GetString(client.DownloadData(request));
 
-            Group gr;
-            gr = JsonConvert.DeserializeObject<Group>(answer);
+            groupsGet gr;
+            gr = JsonConvert.DeserializeObject<groupsGet>(answer);
 
             int groupsValue = 0;
 
             try
             {
+                mainform.progressBar1.Maximum = gr.response.items.Length;
+                mainform.progressBar1.Visible = true;
                 for (int itemIndex = 0; itemIndex < gr.response.items.Length; itemIndex = itemIndex + 1)
                 {
                     string[] names = new string[3];
@@ -53,8 +50,7 @@ namespace vk_bot
                     pictureBox1.Load(gr.response.items[itemIndex].photo_50);
                     Application.DoEvents();
                     imageList1.Images.Add(pictureBox1.Image);
-
-                    mainform.progressBar1.Maximum = gr.response.items.Length;
+                   
                     mainform.progressBar1.Value = groupsValue;
 
                     ListViewItem lvi = new ListViewItem(names, imageList1.Images.Count - 1);
@@ -63,6 +59,7 @@ namespace vk_bot
                     if (mainform.progressBar1.Value == mainform.progressBar1.Maximum)
                     {
                         mainform.progressBar1.Visible = false;
+                        mainform.label1.Visible = false;
                     }
                 }
             }
@@ -71,19 +68,7 @@ namespace vk_bot
                 ErrorLabel.Text = "Возникла непредвиденная ошибка";
                 ErrorLabel.Visible = true;
             }
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            if (listView1.SelectedItems.Count > 0)
-            {
-                label1.Text = listView1.SelectedItems[0].SubItems[1].Text;
-
-                PostsForm pfrm = new PostsForm();
-                pfrm.access_token = access_token;
-                pfrm.groupId = label1.Text;
-                pfrm.ShowDialog();
-            }
+            mainform.progressBar1.Visible = false;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -106,5 +91,6 @@ namespace vk_bot
                 lpc.ShowDialog();
             }
         }
+
     }
 }

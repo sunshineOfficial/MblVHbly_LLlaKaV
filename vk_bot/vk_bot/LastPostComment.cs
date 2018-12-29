@@ -35,6 +35,15 @@ namespace vk_bot
             {
                 timer1.Enabled = true;
                 button2.Enabled = true;
+
+                Start str = new Start();
+                DialogResult res;
+                res = str.ShowDialog();
+
+                if (res == DialogResult.OK)
+                {
+                    str.Close();
+                }
             }
         }
 
@@ -44,6 +53,15 @@ namespace vk_bot
             {
                 listBox1.Items.Add(textBox1.Text);
                 textBox1.Text = "";
+                
+                SuccessfulAddForm saf = new SuccessfulAddForm();
+                DialogResult res;
+                res = saf.ShowDialog();
+
+                if (res == DialogResult.OK)
+                {
+                    saf.Close();
+                }
             }
         }
 
@@ -52,6 +70,15 @@ namespace vk_bot
             if (listBox1.SelectedItems.Count > 0)
             {
                 listBox1.Items.Remove(listBox1.SelectedItems[0]);
+
+                SuccessfulDeleteForm sdf = new SuccessfulDeleteForm();
+                DialogResult res;
+                res = sdf.ShowDialog();
+
+                if (res == DialogResult.OK)
+                {
+                    sdf.Close();
+                }
             }
         }
 
@@ -77,8 +104,8 @@ namespace vk_bot
                 Application.DoEvents();
                 System.Threading.Thread.Sleep(30);//Ждать 100 мс
 
-                Post po = new Post();
-                po = JsonConvert.DeserializeObject<Post>(answer);
+                PostR po;
+                po = JsonConvert.DeserializeObject<PostR>(answer);
 
                 if (answer.Contains("error"))
                 {
@@ -138,7 +165,6 @@ namespace vk_bot
                     catch (Exception)
                     {
                         CommentErrorForm cef = new CommentErrorForm();
-                        cef.ShowDialog();
                         DialogResult res;
                         res = cef.ShowDialog();
 
@@ -153,7 +179,7 @@ namespace vk_bot
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (timer1.Enabled = true)
+            if (timer1.Enabled == true)
             {
                 timer1.Enabled = false;
             }
