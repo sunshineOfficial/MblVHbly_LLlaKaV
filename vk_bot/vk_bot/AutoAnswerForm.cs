@@ -27,7 +27,7 @@ namespace vk_bot
 
         private void FormPreceous_Load(object sender, EventArgs e)
         {
-            string request = "https://api.vk.com/method/groups.get?extended=1&access_token=" + access_token + "&v=5.87";
+            string request = "https://api.vk.com/method/groups.get?extended=1&access_token=" + access_token + "&v=5.92";
             WebClient client = new WebClient();
             string answer = Encoding.UTF8.GetString(client.DownloadData(request));
 

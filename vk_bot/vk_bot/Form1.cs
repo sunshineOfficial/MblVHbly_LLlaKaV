@@ -48,7 +48,7 @@ namespace vk_bot
                     idd = idd.Remove(poss);
                     try
                     {
-                        string request = "https://api.vk.com/method/users.get?user_ids=" + idd + "&fields=photo_100,bdate&access_token=" + access_token + "&v=5.87";
+                        string request = "https://api.vk.com/method/users.get?user_ids=" + idd + "&fields=photo_100,bdate&access_token=" + access_token + "&v=5.92";
                         //string request2 = "https://api.vk.com/method/groups.get?user_id=56929156&fields=photo_100&extended=1&access_token=" + access_token + "&v=5.87";
                         WebClient client = new WebClient();
                         //string answer = client.DownloadString(request);
@@ -59,7 +59,7 @@ namespace vk_bot
                     
 
                         User user = JsonConvert.DeserializeObject<User>(answer);
-                        string allgroups = "https://api.vk.com/method/groups.get?user_id=" + idd + "&fields=name&extended=1&access_token=" + access_token + "&v=5.87";
+                        string allgroups = "https://api.vk.com/method/groups.get?user_id=" + idd + "&fields=name&extended=1&access_token=" + access_token + "&v=5.92";
                         string answerallgroups = Encoding.UTF8.GetString(client.DownloadData(allgroups));
                         groups allusergroups = JsonConvert.DeserializeObject<groups>(answerallgroups);
 

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.AvatarPictureBox = new System.Windows.Forms.PictureBox();
             this.FirstNameLabel = new System.Windows.Forms.Label();
             this.SecondNameLabel = new System.Windows.Forms.Label();
@@ -40,6 +41,7 @@
             this.AButto = new System.Windows.Forms.Button();
             this.delete_friends = new System.Windows.Forms.Button();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.AvatarPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -76,7 +78,8 @@
             this.autoAnswerButton.Name = "autoAnswerButton";
             this.autoAnswerButton.Size = new System.Drawing.Size(187, 53);
             this.autoAnswerButton.TabIndex = 4;
-            this.autoAnswerButton.Text = "Автокомментирование постов в группах";
+            this.autoAnswerButton.Text = "Автокомментирование новых постов в группах";
+            this.toolTip1.SetToolTip(this.autoAnswerButton, "Сканирует выбранные вами группы и автоматически комментирует их");
             this.autoAnswerButton.UseVisualStyleBackColor = true;
             this.autoAnswerButton.Click += new System.EventHandler(this.autoAnswerButton_Click);
             // 
@@ -206,6 +209,7 @@
         private System.Windows.Forms.Button AButto;
         private System.Windows.Forms.Button delete_friends;
         private System.Windows.Forms.WebBrowser webBrowser1;
+        private System.Windows.Forms.ToolTip toolTip1;
 
     }
 }

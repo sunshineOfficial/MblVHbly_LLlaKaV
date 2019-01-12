@@ -32,18 +32,12 @@ namespace vk_bot
         private void button1_Click(object sender, EventArgs e)
         {
             if (listBox1.SelectedItems.Count > 0)
-            {
+            {               
                 timer1.Enabled = true;
                 button2.Enabled = true;
 
-                Start str = new Start();
                 DialogResult res;
-                res = str.ShowDialog();
-
-                if (res == DialogResult.OK)
-                {
-                    str.Close();
-                }
+                res = MessageBox.Show("Автокомментирование новых постов успешно начато", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -53,15 +47,9 @@ namespace vk_bot
             {
                 listBox1.Items.Add(textBox1.Text);
                 textBox1.Text = "";
-                
-                SuccessfulAddForm saf = new SuccessfulAddForm();
-                DialogResult res;
-                res = saf.ShowDialog();
 
-                if (res == DialogResult.OK)
-                {
-                    saf.Close();
-                }
+                DialogResult res;
+                res = MessageBox.Show("Ваш комментарий успешно добавлен в список", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -71,14 +59,8 @@ namespace vk_bot
             {
                 listBox1.Items.Remove(listBox1.SelectedItems[0]);
 
-                SuccessfulDeleteForm sdf = new SuccessfulDeleteForm();
                 DialogResult res;
-                res = sdf.ShowDialog();
-
-                if (res == DialogResult.OK)
-                {
-                    sdf.Close();
-                }
+                res = MessageBox.Show("Ваш комментарий успешно удалён из списка", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -95,7 +77,7 @@ namespace vk_bot
             foreach (string groupId in grIds)
             {
                 DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, 0);
-                string request = "https://api.vk.com/method/wall.get?owner_id=-" + groupId + "&count=2&extended=1&access_token=" + access_token + "&v=5.87";
+                string request = "https://api.vk.com/method/wall.get?owner_id=-" + groupId + "&count=2&extended=1&access_token=" + access_token + "&v=5.92";
                 WebClient client = new WebClient();
                 string answer = Encoding.UTF8.GetString(client.DownloadData(request));
                 System.Threading.Thread.Sleep(30);//Ждать 30 мс
@@ -126,7 +108,7 @@ namespace vk_bot
                     }
                 }
 
-                string request3 = "https://api.vk.com/method/wall.getComments?owner_id=-" + groupId + "&post_id=" + postId + "&count=50&sort=desc&access_token=" + access_token + "&v=5.87";
+                string request3 = "https://api.vk.com/method/wall.getComments?owner_id=-" + groupId + "&post_id=" + postId + "&count=50&sort=desc&access_token=" + access_token + "&v=5.92";
                 string answer3 = Encoding.UTF8.GetString(client.DownloadData(request3));
 
                 Comments co = new Comments();
@@ -154,7 +136,7 @@ namespace vk_bot
                 {
                     try
                     {
-                        string request2 = "https://api.vk.com/method/wall.createComment?owner_id=-" + groupId + "&post_id=" + postId + "&message=" + listBox1.Text + "&access_token=" + access_token + "&v=5.87";
+                        string request2 = "https://api.vk.com/method/wall.createComment?owner_id=-" + groupId + "&post_id=" + postId + "&message=" + listBox1.Text + "&access_token=" + access_token + "&v=5.92";
                         string answer2 = Encoding.UTF8.GetString(client.DownloadData(request2));
 
                         if (answer.Contains("error"))
@@ -164,14 +146,7 @@ namespace vk_bot
                     }
                     catch (Exception)
                     {
-                        CommentErrorForm cef = new CommentErrorForm();
-                        DialogResult res;
-                        res = cef.ShowDialog();
-
-                        if (res == DialogResult.OK)
-                        {
-                            cef.Close();
-                        }
+                        MessageBox.Show("Не удалось отправить комментарий", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
@@ -182,6 +157,9 @@ namespace vk_bot
             if (timer1.Enabled == true)
             {
                 timer1.Enabled = false;
+
+                DialogResult res;
+                res = MessageBox.Show("Автокомментирование новых постов успешно завершено", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 

@@ -68,23 +68,11 @@
     <Compile Include="AutoMessageForm.Designer.cs">
       <DependentUpon>AutoMessageForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="CommentErrorForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CommentErrorForm.Designer.cs">
-      <DependentUpon>CommentErrorForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="delete_friend.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="delete_friend.Designer.cs">
       <DependentUpon>delete_friend.cs</DependentUpon>
-    </Compile>
-    <Compile Include="End.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="End.Designer.cs">
-      <DependentUpon>End.cs</DependentUpon>
     </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -119,24 +107,6 @@
     <Compile Include="sendphotoForm.Designer.cs">
       <DependentUpon>sendphotoForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Start.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Start.Designer.cs">
-      <DependentUpon>Start.cs</DependentUpon>
-    </Compile>
-    <Compile Include="SuccessfulAddForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SuccessfulAddForm.Designer.cs">
-      <DependentUpon>SuccessfulAddForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="SuccessfulDeleteForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SuccessfulDeleteForm.Designer.cs">
-      <DependentUpon>SuccessfulDeleteForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="User.cs" />
     <EmbeddedResource Include="AButton.resx">
       <DependentUpon>AButton.cs</DependentUpon>
@@ -147,14 +117,8 @@
     <EmbeddedResource Include="AutoMessageForm.resx">
       <DependentUpon>AutoMessageForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CommentErrorForm.resx">
-      <DependentUpon>CommentErrorForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="delete_friend.resx">
       <DependentUpon>delete_friend.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="End.resx">
-      <DependentUpon>End.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -179,15 +143,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="sendphotoForm.resx">
       <DependentUpon>sendphotoForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Start.resx">
-      <DependentUpon>Start.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SuccessfulAddForm.resx">
-      <DependentUpon>SuccessfulAddForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SuccessfulDeleteForm.resx">
-      <DependentUpon>SuccessfulDeleteForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="Properties\Settings.settings">
