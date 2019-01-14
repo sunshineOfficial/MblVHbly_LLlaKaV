@@ -136,12 +136,25 @@ namespace vk_bot
                 {
                     try
                     {
-                        string request2 = "https://api.vk.com/method/wall.createComment?owner_id=-" + groupId + "&post_id=" + postId + "&message=" + listBox1.Text + "&access_token=" + access_token + "&v=5.92";
-                        string answer2 = Encoding.UTF8.GetString(client.DownloadData(request2));
-
-                        if (answer.Contains("error"))
+                        if (PicRelatedMin.Visible = false)
                         {
-                            throw new Exception();
+                            string request2 = "https://api.vk.com/method/wall.createComment?owner_id=-" + groupId + "&post_id=" + postId + "&message=" + listBox1.Text + "&access_token=" + access_token + "&v=5.92";
+                            string answer2 = Encoding.UTF8.GetString(client.DownloadData(request2));
+
+                            if (answer.Contains("error"))
+                            {
+                                throw new Exception();
+                            }
+                        }
+                        else
+                        {
+                            string request2 = "https://api.vk.com/method/wall.createComment?owner_id=-" + groupId + "&post_id=" + postId + "&message=" + listBox1.Text + "&access_token=" + access_token + "&v=5.92";
+                            string answer2 = Encoding.UTF8.GetString(client.DownloadData(request2));
+
+                            if (answer.Contains("error"))
+                            {
+                                throw new Exception();
+                            }
                         }
                     }
                     catch (Exception)
@@ -178,6 +191,28 @@ namespace vk_bot
         private void LastPostComment_FormClosing(object sender, FormClosingEventArgs e)
         {           
             File.WriteAllLines(path, listBox1.Items.OfType<string>(), Encoding.GetEncoding(1251));
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.ShowDialog();
+        }
+
+        private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
+        {
+            PicRelatedLabel.Text = openFileDialog1.SafeFileName;
+            PicRelatedMin.Image = Image.FromFile(openFileDialog1.FileName);
+            PicRelatedMin.Visible = true;
+            button6.Visible = true;
+            button6.Enabled = true;
+
+            openFileDialog1.Dispose();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            PicRelatedLabel.Text = "Загрузите фотографию";
+            PicRelatedMin.Visible = false;
         }
     }
 }
