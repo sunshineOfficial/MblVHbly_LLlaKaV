@@ -163,8 +163,8 @@
             this.webBrowser1.Size = new System.Drawing.Size(822, 420);
             this.webBrowser1.TabIndex = 0;
             this.webBrowser1.Url = new System.Uri("https://oauth.vk.com/authorize?client_id=6410346&display=page&redirect_uri=https:" +
-                    "//oauth.vk.com/blank.html&scope=friends,wall,messages&response_type=token&v=5.87" +
-                    "&state=123456", System.UriKind.Absolute);
+                    "//oauth.vk.com/blank.html&scope=friends,wall,messages,photos&response_type=token" +
+                    "&v=5.87&state=123456", System.UriKind.Absolute);
             this.webBrowser1.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.webBrowser1_DocumentCompleted);
             // 
             // Form1

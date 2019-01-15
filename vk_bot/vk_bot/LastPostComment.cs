@@ -206,6 +206,10 @@ namespace vk_bot
             button6.Visible = true;
             button6.Enabled = true;
 
+            string request = "https://api.vk.com/method/photos.createAlbum?title=vk_bot&privacy_view=nobody&access_token=" + access_token + "&v=5.92";
+            WebClient client = new WebClient();
+            string answer = Encoding.UTF8.GetString(client.DownloadData(request));
+
             openFileDialog1.Dispose();
         }
 
