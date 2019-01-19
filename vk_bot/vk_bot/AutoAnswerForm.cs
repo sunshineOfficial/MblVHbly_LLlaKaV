@@ -76,7 +76,7 @@ namespace vk_bot
             Collection<string> grIds = new Collection<string>();
             if (listView1.SelectedItems.Count > 0)
             {
-                label1.Text = listView1.SelectedItems[0].SubItems[1].Text;
+                label2.Text = listView1.SelectedItems[0].SubItems[1].Text;
 
                 foreach (ListViewItem str in listView1.SelectedItems)
                 {
@@ -85,7 +85,7 @@ namespace vk_bot
 
                 LastPostComment lpc = new LastPostComment();
                 lpc.access_token = access_token;
-                lpc.groupId = label1.Text;
+                lpc.groupId = label2.Text;
                 lpc.userId = userId;
                 lpc.grIds = grIds;
                 lpc.ShowDialog();

@@ -170,6 +170,7 @@ namespace vk_bot
             if (timer1.Enabled == true)
             {
                 timer1.Enabled = false;
+                button2.Enabled = false;
 
                 DialogResult res;
                 res = MessageBox.Show("Автокомментирование новых постов успешно завершено", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -217,6 +218,8 @@ namespace vk_bot
         {
             PicRelatedLabel.Text = "Загрузите фотографию";
             PicRelatedMin.Visible = false;
+            button6.Visible = false;
+            button6.Enabled = false;
         }
     }
 }
