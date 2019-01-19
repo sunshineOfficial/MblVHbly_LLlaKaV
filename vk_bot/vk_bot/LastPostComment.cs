@@ -207,9 +207,28 @@ namespace vk_bot
             button6.Visible = true;
             button6.Enabled = true;
 
-            string request = "https://api.vk.com/method/photos.createAlbum?title=vk_bot&privacy_view=nobody&access_token=" + access_token + "&v=5.92";
+            string request = "https://api.vk.com/method/photos.getAlbums?owner_id" + userId + "&access_token=" + access_token + "&v=5.92";
             WebClient client = new WebClient();
             string answer = Encoding.UTF8.GetString(client.DownloadData(request));
+
+            Albums al = new Albums();
+            al = JsonConvert.DeserializeObject<Albums>(answer);
+            
+            bool exist = false;
+            
+            foreach (Albums.Response.Item itm in al.response.items)
+            {
+                if (itm.title == "vk_bot")
+                {
+                    exist = true;
+                }
+            }
+
+            if (exist == false)
+            {
+                string request2 = "https://api.vk.com/method/photos.createAlbum?title=vk_bot&privacy_view=nobody&access_token=" + access_token + "&v=5.92";
+                string answer2 = Encoding.UTF8.GetString(client.DownloadData(request2));
+            }
 
             openFileDialog1.Dispose();
         }

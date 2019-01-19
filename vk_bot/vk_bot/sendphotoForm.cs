@@ -32,7 +32,7 @@ namespace vk_bot
 
 
 
-            string request2 = "https://api.vk.com/method/groups.get?user_id=" + Form1.idd + "&fields=name,photo_100&extended=1&access_token=" + access_token + "&v=5.87";
+            string request2 = "https://api.vk.com/method/groups.get?user_id=" + Form1.userId + "&fields=name,photo_100&extended=1&access_token=" + access_token + "&v=5.87";
             string answer = Encoding.UTF8.GetString(client.DownloadData(request2));
             pictureBox1.Visible = false;
             listView1.Clear();
@@ -153,8 +153,8 @@ namespace vk_bot
                             if (stenka.response.items[id1].attachments[0] != null)
                                 if (stenka.response.items[id1].attachments[0].photo != null)
                                 {
-                                    
-                                    string otpravka = "https://api.vk.com/method/messages.send?user_id=" + Form1.idd + "&attachment=photo" + ownerid + "_" + id + "&access_token=" + access_token + "&v=5.87";
+
+                                    string otpravka = "https://api.vk.com/method/messages.send?user_id=" + Form1.userId + "&attachment=photo" + ownerid + "_" + id + "&access_token=" + access_token + "&v=5.87";
                                     string mess = Encoding.UTF8.GetString(client.DownloadData(otpravka));
                                     Message message = JsonConvert.DeserializeObject<Message>(mess);
                                     System.Threading.Thread.Sleep(700);

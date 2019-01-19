@@ -14,10 +14,8 @@ namespace vk_bot
 {
     public partial class Form1 : Form
     {
-
-        public static string idd;
         public static string access_token;
-        public string userId;
+        public static string userId;
 
 
         public Form1()
@@ -40,15 +38,15 @@ namespace vk_bot
                 if (e.Url.ToString().Contains("user_id="))
                 {
 
-                    idd = e.Url.ToString();
-                    int poss = idd.IndexOf("user_id=");
+                    userId = e.Url.ToString();
+                    int poss = userId.IndexOf("user_id=");
                     poss += "user_id=".Length;
-                    idd = idd.Remove(0, poss);
-                    poss = idd.IndexOf("&");
-                    idd = idd.Remove(poss);
+                    userId = userId.Remove(0, poss);
+                    poss = userId.IndexOf("&");
+                    userId = userId.Remove(poss);
                     try
                     {
-                        string request = "https://api.vk.com/method/users.get?user_ids=" + idd + "&fields=photo_100,bdate&access_token=" + access_token + "&v=5.92";
+                        string request = "https://api.vk.com/method/users.get?user_ids=" + userId + "&fields=photo_100,bdate&access_token=" + access_token + "&v=5.92";
                         //string request2 = "https://api.vk.com/method/groups.get?user_id=56929156&fields=photo_100&extended=1&access_token=" + access_token + "&v=5.87";
                         WebClient client = new WebClient();
                         //string answer = client.DownloadString(request);
@@ -59,7 +57,7 @@ namespace vk_bot
                     
 
                         User user = JsonConvert.DeserializeObject<User>(answer);
-                        string allgroups = "https://api.vk.com/method/groups.get?user_id=" + idd + "&fields=name&extended=1&access_token=" + access_token + "&v=5.92";
+                        string allgroups = "https://api.vk.com/method/groups.get?user_id=" + userId + "&fields=name&extended=1&access_token=" + access_token + "&v=5.92";
                         string answerallgroups = Encoding.UTF8.GetString(client.DownloadData(allgroups));
                         groups allusergroups = JsonConvert.DeserializeObject<groups>(answerallgroups);
 
