@@ -5,8 +5,6 @@ using System.Text;
 
 namespace vk_bot
 {
-
-
     public class Wall
     {
         public Response response { get; set; }
@@ -601,7 +599,7 @@ namespace vk_bot
 
 
 
-    public class Group//
+    public class Group
     {
         public Response response { get; set; }
         public class Response
@@ -708,6 +706,75 @@ namespace vk_bot
                 public int thumb_is_last { get; set; }
                 public PrivacyView privacy_view { get; set; }
                 public PrivacyComment privacy_comment { get; set; }
+            }
+        }
+    }
+
+    public class CreateAlbum
+    {
+        public Response response { get; set; }
+        public class Response
+        {
+            public int id { get; set; }
+            public int thumb_id { get; set; }
+            public int owner_id { get; set; }
+            public string title { get; set; }
+            public string description { get; set; }
+            public int created { get; set; }
+            public int updated { get; set; }
+            public int size { get; set; }
+            public PrivacyView privacy_view { get; set; }
+            public PrivacyComment privacy_comment { get; set; }
+
+            public class PrivacyView
+            {
+                public string category { get; set; }
+            }
+
+            public class PrivacyComment
+            {
+                public string category { get; set; }
+            }
+        }
+    }
+
+    public class UploadServer
+    {
+        public Response response { get; set; }
+        public class Response
+        {
+            public string upload_url { get; set; }
+            public int album_id { get; set; }
+            public int user_id { get; set; }
+        }
+    }
+
+    public class PostRequest
+    {
+        public int server { get; set; }
+        public string photos_list { get; set; }
+        public int aid { get; set; }
+        public string hash { get; set; }
+    }
+
+    public class Photos
+    {
+        public List<Response> response { get; set; }
+        public class Response
+        {
+            public int id { get; set; }
+            public int album_id { get; set; }
+            public int owner_id { get; set; }
+            public List<Size> sizes { get; set; }
+            public string text { get; set; }
+            public int date { get; set; }
+
+            public class Size
+            {
+                public string type { get; set; }
+                public string url { get; set; }
+                public int width { get; set; }
+                public int height { get; set; }
             }
         }
     }
