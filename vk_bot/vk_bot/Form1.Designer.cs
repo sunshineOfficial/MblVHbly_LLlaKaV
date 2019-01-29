@@ -73,6 +73,7 @@
             // 
             // autoAnswerButton
             // 
+            this.autoAnswerButton.Enabled = false;
             this.autoAnswerButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.autoAnswerButton.Location = new System.Drawing.Point(252, 17);
             this.autoAnswerButton.Name = "autoAnswerButton";
@@ -85,6 +86,7 @@
             // 
             // Pusia
             // 
+            this.Pusia.Enabled = false;
             this.Pusia.Location = new System.Drawing.Point(252, 100);
             this.Pusia.Name = "Pusia";
             this.Pusia.Size = new System.Drawing.Size(187, 54);
@@ -95,6 +97,7 @@
             // 
             // sendphoto
             // 
+            this.sendphoto.Enabled = false;
             this.sendphoto.Location = new System.Drawing.Point(252, 179);
             this.sendphoto.Name = "sendphoto";
             this.sendphoto.Size = new System.Drawing.Size(187, 54);
@@ -135,6 +138,7 @@
             // 
             // AButto
             // 
+            this.AButto.Enabled = false;
             this.AButto.Location = new System.Drawing.Point(465, 16);
             this.AButto.Name = "AButto";
             this.AButto.Size = new System.Drawing.Size(187, 54);
@@ -145,6 +149,7 @@
             // 
             // delete_friends
             // 
+            this.delete_friends.Enabled = false;
             this.delete_friends.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.delete_friends.Location = new System.Drawing.Point(465, 99);
             this.delete_friends.Name = "delete_friends";
@@ -163,8 +168,8 @@
             this.webBrowser1.Size = new System.Drawing.Size(822, 420);
             this.webBrowser1.TabIndex = 0;
             this.webBrowser1.Url = new System.Uri("https://oauth.vk.com/authorize?client_id=6410346&display=page&redirect_uri=https:" +
-                    "//oauth.vk.com/blank.html&scope=friends,wall,messages,photos&response_type=token" +
-                    "&v=5.87&state=123456", System.UriKind.Absolute);
+        "//oauth.vk.com/blank.html&scope=friends,wall,messages,photos,groups&response_typ" +
+        "e=token&v=5.87&state=123456", System.UriKind.Absolute);
             this.webBrowser1.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.webBrowser1_DocumentCompleted);
             // 
             // Form1

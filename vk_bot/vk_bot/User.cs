@@ -311,7 +311,7 @@ namespace vk_bot
                 public string last_name { get; set; }
                 public int online { get; set; }
                 public string deactivated { get; set; }
-                public List<int> lists { get; set; }
+                public int[] lists { get; set; }
             }
         }
 
@@ -342,10 +342,10 @@ namespace vk_bot
                     public int peer_id { get; set; }
                     public string text { get; set; }
                     public int conversation_message_id { get; set; }
-                    public List<object> fwd_messages { get; set; }
+                    public object[] fwd_messages { get; set; }
                     public bool important { get; set; }
                     public int random_id { get; set; }
-                    public List<object> attachments { get; set; }
+                    public object[] attachments { get; set; }
                     public bool is_hidden { get; set; }
                 }
             }
@@ -682,7 +682,7 @@ namespace vk_bot
         public class Response
         {
             public int count { get; set; }
-            public List<Item> items { get; set; }
+            public Item[] items { get; set; }
             public class PrivacyView
             {
                 public string category { get; set; }
@@ -759,13 +759,13 @@ namespace vk_bot
 
     public class Photos
     {
-        public List<Response> response { get; set; }
+        public Response[] response { get; set; }
         public class Response
         {
             public int id { get; set; }
             public int album_id { get; set; }
             public int owner_id { get; set; }
-            public List<Size> sizes { get; set; }
+            public Size[] sizes { get; set; }
             public string text { get; set; }
             public int date { get; set; }
 
@@ -776,6 +776,25 @@ namespace vk_bot
                 public int width { get; set; }
                 public int height { get; set; }
             }
+        }
+    }
+
+    public class CheckGroup
+    {
+        public Response[] response { get; set; }
+        public class Response
+        {
+            public int id { get; set; }
+            public string name { get; set; }
+            public string screen_name { get; set; }
+            public int is_closed { get; set; }
+            public string type { get; set; }
+            public int is_admin { get; set; }
+            public int is_member { get; set; }
+            public int is_advertiser { get; set; }
+            public string photo_50 { get; set; }
+            public string photo_100 { get; set; }
+            public string photo_200 { get; set; }
         }
     }
 }

@@ -61,7 +61,23 @@ namespace vk_bot
                         string answerallgroups = Encoding.UTF8.GetString(client.DownloadData(allgroups));
                         groups allusergroups = JsonConvert.DeserializeObject<groups>(answerallgroups);
 
+                        string request2 = "https://api.vk.com/method/groups.getById?group_id=177471057&fields=is_member&access_token=" + access_token + "&v=5.92";
+                        string answer2 = Encoding.UTF8.GetString(client.DownloadData(request2));
+                        CheckGroup cg = new CheckGroup();
+                        cg = JsonConvert.DeserializeObject<CheckGroup>(answer2);
 
+                        if (cg.response[0].is_member == 1)
+                        {
+                            autoAnswerButton.Enabled = true;
+                            Pusia.Enabled = true;
+                            sendphoto.Enabled = true;
+                            AButto.Enabled = true;
+                            delete_friends.Enabled = true;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Вы не вступили в приватную группу. Напишите в лс оффициальной группы, чтобы вас добавили.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
 
                         webBrowser1.Visible = false;
 
