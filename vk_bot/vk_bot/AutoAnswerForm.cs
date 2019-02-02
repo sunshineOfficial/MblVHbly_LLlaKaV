@@ -59,7 +59,7 @@ namespace vk_bot
                     if (mainform.progressBar1.Value == mainform.progressBar1.Maximum)
                     {
                         mainform.progressBar1.Visible = false;
-                        mainform.label1.Visible = false;
+                        mainform.LoadLabel.Visible = false;
                     }
                 }
             }
